@@ -1,7 +1,7 @@
 {
-  "name": "WEBD6201-ICE-2",
+  "name": "WEBD6201-ICE-5",
   "version": "1.0.0",
-  "description": "REPO for WEBD6201 ICE 2",
+  "description": "Demo for WEBD6201 ICE 5",
   "main": "index.js",
   "author": "Taylor Bazouzi <taylor.bazouzi@dcmail.ca>",
   "license": "MIT",
@@ -10,5 +10,8 @@
     "@popperjs/core": "^2.11.2",
     "bootstrap": "^5.1.3",
     "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.13"
   }
 }
