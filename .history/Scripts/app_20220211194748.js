@@ -2,6 +2,7 @@
 // AKA Anonymous Self-Executing Function
 (function()
 {
+
     function DisplayAboutPage()
     {
         console.log("About Us Page");
@@ -16,6 +17,7 @@
     {
         console.log("Services Page");
     }
+
 
     function DisplayHomePage()
     {
@@ -80,12 +82,9 @@
 
     function ContactFormValidation()
     {
-        ValidateField("fullName",/^([A-Z][a-z]{1,3}.?\s)?([A-Z][a-z]{1,25})+(\s|,|-)([A-Z][a-z]{1,25})+(\s|,|-)*$/,
-        "Please enter a valid Full Name. This must include at least a Capitalized first name followed by a Capitalized last Name.");
-        ValidateField("contactNumber",/^(\+\d{1,3}[\s-.])?\(?\d{3}\)?[\s-.]?\d{3}[\s-.]?\d{4}$/,
-        "Please enter a valid Contact Number. Example: (905) 555-5555");
-        ValidateField("emailAddress",/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/,
-        "Please enter a valid Email Address.");
+        ValidateField("fullName",/^([A-Z][a-z]{1,3}.?\s)?([A-Z][a-z]{1,25})+(\s|,|-)([A-Z][a-z]{1,25})+(\s|,|-)*$/,"Please enter a valid Full Name. This must include at least a Capitalized first name followed by a Capitalized last Name.");
+        ValidateField("contactNumber",/^(\+\d{1,3}[\s-.])?\(?\d{3}\)?[\s-.]?\d{3}[\s-.]?\d{4}$/,"Please enter a valid Contact Number. Example: (905) 555-5555");
+        ValidateField("emailAddress",/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/,"Please enter a valid Email Address.");
     }
 
     function DisplayContactPage()
@@ -216,6 +215,7 @@
                     $("#editButton").on("click", (event)=>
                     {
                         event.preventDefault();
+
                         // get any changes from the form
                         contact.FullName = $("#fullName").val();
                         contact.ContactNumber = $("#contactNumber").val();
