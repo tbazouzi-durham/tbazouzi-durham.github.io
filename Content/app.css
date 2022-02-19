@@ -1,3 +1,4 @@
+
 .input-group-addon:first-child
 {
     border-right: 0;
@@ -11,7 +12,7 @@
     line-height: 1;
     text-align: center;
     border: 1px solid darkgrey;
-    border-radius: 4xpx; 
+    border-radius: 4px; 
 }
 
 .input-group-addon .fa
@@ -38,14 +39,14 @@
 {
     padding: 2rem 1rem;
     margin-bottom: 2rem;
-    background-color: lightgrey;
+    background-color: darkgrey;
     border-radius: .3rem;
 }
 
 .login input
 {
     background-color: white;
-    border-color: darkgrey;
+    border-color: plum;
     border-radius: .4em;
     width: 100%;
 }
