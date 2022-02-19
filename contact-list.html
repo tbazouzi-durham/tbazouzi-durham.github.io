@@ -1,83 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact-List</title>
-  <!-- CSS Section -->
-  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="./Content/app.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact-List</title>
+    <!-- CSS Section -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./Content/app.css">
 </head>
-
 <body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"><i class="fas fa-spider"></i> WEBD6201</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="products.html"><i class="fas fa-project-diagram"></i> Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="services.html"><i class="fas fa-map-signs"></i> Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html"><i class="fas fa-info"></i> About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
-            </li>
-          </ul>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html"><i class="fas fa-spider"></i> WEBD6201</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="products.html"><i class="fas fa-project-diagram"></i> Products</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="services.html"><i class="fas fa-map-signs"></i> Services</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about.html"><i class="fas fa-info"></i> About Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    <main class="container">
+      <h1>Contact List</h1>
+
+      <div class="row">
+        <div class="col">
+
+          <button id="addButton" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Add Contact</button>
+
+          <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Email Address</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="contactList">
+            </tbody>
+          </table>
         </div>
       </div>
-    </nav>
-  </header>
+    </main>
 
-  <main class="container">
-    <h1>Contact List</h1>
+    
+    <!-- Scripting Section -->
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <div class="row">
-      <div class="col">
-
-        <button id="addButton" class="btn btn-primary mb-1"><i class="fas fa-plus-circle"></i> Add Contact</button>
-
-        <table class="table table-striped table-bordered table-hover">
-          <thead class="table-dark">
-            <tr>
-              <th scope="col" class="text-center">#</th>
-              <th scope="col">Full Name</th>
-              <th scope="col">Contact Number</th>
-              <th scope="col">Email Address</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody id="contactList">
-          </tbody>
-        </table>
-
-      </div>
-    </div>
-  </main>
-
-  <!-- Scripting Section -->
-  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
-  <script src="./Scripts/namespace.js"></script>
-  <script src="./Scripts/contact.js"></script>
-  <script src="./Scripts/app.js"></script>
+    <script src="./Scripts/namespace.js"></script>
+    <script src="./Scripts/contact.js"></script>
+    <script src="./Scripts/app.js"></script>
 </body>
-
 </html>

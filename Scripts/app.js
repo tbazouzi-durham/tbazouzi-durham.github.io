@@ -1,24 +1,30 @@
 // IIFE -- Immediately Invoked Function Expression
 // AKA Anonymous Self-Executing Function
-(function () {
+(function()
+{
 
-    function DisplayAboutPage() {
+    function DisplayAboutPage()
+    {
         console.log("About Us Page");
     }
 
-    function DisplayProductsPage() {
+    function DisplayProductsPage()
+    {
         console.log("Products Page");
     }
 
-    function DisplayServicesPage() {
+    function DisplayServicesPage()
+    {
         console.log("Services Page");
     }
 
 
-    function DisplayHomePage() {
+    function DisplayHomePage()
+    {
         console.log("Home Page");
 
-        $("#AboutUsButton").on("click", function () {
+        $("#AboutUsButton").on("click", function()
+        {
             location.href = "about.html";
         });
 
@@ -36,9 +42,11 @@
      * @param {string} contactNumber
      * @param {string} emailAddress
      */
-    function AddContact(fullName, contactNumber, emailAddress) {
+    function AddContact(fullName, contactNumber, emailAddress)
+    {
         let contact = new core.Contact(fullName, contactNumber, emailAddress);
-        if (contact.serialize()) {
+        if(contact.serialize())
+        {
             let key = contact.FullName.substring(0, 1) + Date.now();
 
             localStorage.setItem(key, contact.serialize());
@@ -53,48 +61,57 @@
      * @param {RegExp} regular_expression
      * @param {string} error_message
      */
-    function ValidateField(input_field_ID, regular_expression, error_message) {
+    function ValidateField(input_field_ID, regular_expression, error_message)
+    {
         let messageArea = $("#messageArea").hide();
 
-        $("#" + input_field_ID).on("blur", function () {
-            let input_text_field = $(this).val();
-            if (!regular_expression.test(input_text_field)) {
-                $(this).trigger("focus").trigger("select");
+        $("#" + input_field_ID).on("blur", function()
+        {
+            let input_text_field = $(this).val(); 
+            if(!regular_expression.test(input_text_field)) 
+            {
+                $(this).trigger("focus").trigger("select"); 
                 messageArea.addClass("alert alert-danger").text(error_message).show();
             }
-            else {
+            else 
+            {
                 messageArea.removeAttr("class").hide();
-            }
+            } 
         });
     }
 
-    function ContactFormValidation() {
-        ValidateField("fullName", /^([A-Z][a-z]{1,3}.?\s)?([A-Z][a-z]{1,25})+(\s|,|-)([A-Z][a-z]{1,25})+(\s|,|-)*$/, "Please enter a valid Full Name. This must include at least a Capitalized first name followed by a Capitalized last Name.");
-        ValidateField("contactNumber", /^(\+\d{1,3}[\s-.])?\(?\d{3}\)?[\s-.]?\d{3}[\s-.]?\d{4}$/, "Please enter a valid Contact Number. Example: (905) 555-5555");
-        ValidateField("emailAddress", /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/, "Please enter a valid Email Address.");
+    function ContactFormValidation()
+    {
+        ValidateField("fullName",/^([A-Z][a-z]{1,3}.?\s)?([A-Z][a-z]{1,25})+(\s|,|-)([A-Z][a-z]{1,25})+(\s|,|-)*$/,"Please enter a valid Full Name. This must include at least a Capitalized first name followed by a Capitalized last Name.");
+        ValidateField("contactNumber",/^(\+\d{1,3}[\s-.])?\(?\d{3}\)?[\s-.]?\d{3}[\s-.]?\d{4}$/,"Please enter a valid Contact Number. Example: (905) 555-5555");
+        ValidateField("emailAddress",/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/,"Please enter a valid Email Address.");
     }
 
-    function DisplayContactPage() {
+    function DisplayContactPage()
+    {
         console.log("Contact Us Page");
 
         ContactFormValidation();
-
+        
         let sendButton = document.getElementById("sendButton");
         let subscribeCheckbox = document.getElementById("subscribeCheckbox");
 
-        sendButton.addEventListener("click", function (event) {
+        sendButton.addEventListener("click", function(event)
+        {
             //event.preventDefault();
 
-            if (subscribeCheckbox.checked) {
+            if(subscribeCheckbox.checked)
+            {
                 AddContact(fullName.value, contactNumber.value, emailAddress.value);
             }
         });
     }
 
-    function DisplayContactListPage() {
+    function DisplayContactListPage()
+    {
         console.log("Contact-List Page");
 
-        if (localStorage.length > 0) // check if localStorage has something in it 
+        if(localStorage.length > 0) // check if localStorage has something in it 
         {
             let contactList = document.getElementById("contactList");
 
@@ -105,7 +122,8 @@
             let index = 1;
 
             //for every key in the keys collection loop
-            for (const key of keys) {
+            for(const key of keys)
+            {
                 let contactData = localStorage.getItem(key); // retrieve contact data from localStorage
 
                 let contact = new core.Contact(); // create an empty Contact Object
@@ -121,55 +139,63 @@
                 </tr>
                 `;
 
-
-
+                
+                
                 index++;
             }
 
             contactList.innerHTML = data;
 
-            $("#addButton").on("click", () => {
+            $("#addButton").on("click", () =>
+            {
                 location.href = "edit.html#add";
             });
 
-            $("button.delete").on("click", function () {
-                if (confirm("Are you sure?")) {
+            $("button.delete").on("click", function()
+            {
+                if(confirm("Are you sure?"))
+                {
                     localStorage.removeItem($(this).val());
                 }
-
+                
                 location.href = "contact-list.html";
             });
 
-            $("button.edit").on("click", function () {
+            $("button.edit").on("click", function() 
+            {
                 location.href = "edit.html#" + $(this).val();
             });
         }
     }
 
-    function DisplayEditPage() {
+    function DisplayEditPage()
+    {
         console.log("Edit Page");
 
         ContactFormValidation();
 
         let page = location.hash.substring(1);
 
-        switch (page) {
+        switch(page)
+        {
             case "add":
                 {
                     $("main>h1").text("Add Contact");
 
                     $("#editButton").html(`<i class="fas fa-plus-circle fa-lg"></i> Add`);
 
-                    $("#editButton").on("click", (event) => {
+                    $("#editButton").on("click", (event) => 
+                    {
                         event.preventDefault();
                         // Add Contactt
                         AddContact(fullName.value, contactNumber.value, emailAddress.value);
                         // Refresh the contact-list page
-                        location.href = "contact-list.html";
+                        location.href ="contact-list.html";
                     });
 
-                    $("#cancelButton").on("click", () => {
-                        location.href = "contact-list.html";
+                    $("#cancelButton").on("click", () =>
+                    {
+                        location.href ="contact-list.html";
                     });
 
                 }
@@ -186,7 +212,8 @@
                     $("#emailAddress").val(contact.EmailAddress);
 
                     // when Edit is pressed - update the contact
-                    $("#editButton").on("click", (event) => {
+                    $("#editButton").on("click", (event)=>
+                    {
                         event.preventDefault();
 
                         // get any changes from the form
@@ -198,58 +225,62 @@
                         localStorage.setItem(page, contact.serialize());
 
                         // return to the contact-list
-                        location.href = "contact-list.html";
+                        location.href ="contact-list.html";
                     });
 
-                    $("#cancelButton").on("click", () => {
-                        location.href = "contact-list.html";
+                    $("#cancelButton").on("click", () =>
+                    {
+                        location.href ="contact-list.html";
                     });
-
+                    
                 }
                 break;
         }
     }
 
-    function DisplayLoginPage() {
+    function DisplayLoginPage()
+    {
         console.logl("Login Page");
     }
 
-    function DisplayRegisterPage() {
+    function DisplayRegisterPage()
+    {
         console.log("Register Page");
     }
 
     // named function
-    function Start() {
+    function Start()
+    {
         console.log("App Started!!");
 
         switch (document.title) {
-            case "Home":
-                DisplayHomePage();
-                break;
-            case "Contact Us":
-                DisplayContactPage();
-                break;
-            case "Contact-List":
-                DisplayContactListPage();
-                break;
-            case "About Us":
-                DisplayAboutPage();
-                break;
-            case "Our Products":
-                DisplayProductsPage();
-                break;
-            case "Our Services":
-                DisplayServicesPage();
-                break;
-            case "Edit":
-                DisplayEditPage();
-                break;
-            case "Login":
-                DisplayLoginPage();
-                break;
-            case "Register":
-                DisplayRegisterPage();
-                break;
+          case "Home":
+            DisplayHomePage();
+            break;
+          case "Contact Us":
+            DisplayContactPage();
+            break;
+          case "Contact-List":
+            DisplayContactListPage();
+            break;
+          case "About Us":
+            DisplayAboutPage();
+            break;
+          case "Our Products":
+            DisplayProductsPage();
+            break;
+          case "Our Services":
+            DisplayServicesPage();
+            break;
+          case "Edit":
+            DisplayEditPage();
+            break;
+          case "Login":
+            DisplayLoginPage();
+            break;
+          case "Register":
+            DisplayRegisterPage();
+            break;
         }
     }
 

@@ -1,17 +1,17 @@
 {
-  "name": "WEBD6201-ICE-5",
+  "name": "ICE-5",
   "version": "1.0.0",
-  "description": "Demo for WEBD6201 ICE 5",
+  "description": "ICE 5 for WEBD6201 in the Winter 2022 Semester",
   "main": "index.js",
-  "author": "Taylor Bazouzi <taylor.bazouzi@dcmail.ca>",
+  "author": "Taylor Bazouzi",
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@popperjs/core": "^2.11.2"
-  },
-  "devDependencies": {
-    "@types/jquery": "^3.5.13",
+    "@popperjs/core": "^2.11.2",
     "bootstrap": "^5.1.3",
     "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.13"
   }
 }
