@@ -3,45 +3,44 @@
 (function()
 {
     /**
-     * This method uses AJAX to open a connection to the url and returns data to the callback function
-     *
-     * @param {string} method
-     * @param {string} url
-     * @param {Function} callback
-     */
-    function AjaxRequest(method, url, callback)
-    {
-        // step 1 - instantiate an XHR object
+    * This method uses AJAX to open a connection to the url and returns data
+    *  to the callback function
+    *
+    * @param {string} method
+    * @param {string} url
+    * @param {Function} callback
+    * 
+    * 
+    */
+      function AjaxRequest(method, url, callback)
+      {
+        /* AJAX STEPS */
+        // Step 1 - instantiate an XHR object
         let XHR = new XMLHttpRequest();
-
-        // step 2 - create an event listener / handler for readystatechange event
+         
+        // Step 2 - create an event listener / handler for readystatechange event
         XHR.addEventListener("readystatechange", () =>
         {
             if(XHR.readyState === 4 && XHR.status === 200)
             {
-               callback(XHR.responseText);
+                if(typeof callback === "function") // if callback is a function pass in data to data property in the callback function
+                {
+                    callback(XHR.responseText);
+                }
+                else
+                {
+                    console.error("ERROR: callback not a function")
+                }
+                
             }
         });
+ 
+        // Step 3 - open a connection to the server
+        XHR.open("GET", "header.html");
 
-        // step 3 - open a connection to the server
-        XHR.open(method, url);
-
-        // step 4 - send the request to the server
+        // Step 4 - send the request to the server
         XHR.send();
-    }
-
-    /**
-     * This function loads the NavBar from the header file and injects it into the page
-     *
-     * @param {string} data
-     */
-    function LoadHeader(data)
-    {
-        $("header").html(data); // data payload
-        $(`li>a:contains(${document.title})`).addClass("active"); // add a class of 'active'
-        CheckLogin();
-    }
-
+      }
 
     function DisplayAboutPage()
     {
@@ -57,11 +56,23 @@
     {
         console.log("Services Page");
     }
+    /**
+    * This function loads the NavBar from the header file and injects it into the page
+    *
+    * @param {string} html_data
+    */
+    function LoadHeader(html_data)
+    {
+        $("header").html(html_data); // data payload
+        $(`li>a:contains(${document.title})`).addClass("active"); // add a class of 'active' update active link
+    }
 
 
     function DisplayHomePage()
     {
         console.log("Home Page");
+        
+        AjaxRequest("GET", "header.html", LoadHeader);
 
         $("#AboutUsButton").on("click", function()
         {
@@ -73,6 +84,10 @@
         $("body").append(`<article class="container">
         <p id="ArticleParagraph" class="mt-3">This is the Article Paragraph</p>
         </article>`);
+
+        // pass loadheader function into the ajaxrequest, 
+        //then we change the name to callback(because it is in a different scope)  then we use callback func and pass in the XHR response text object onto that function
+        //AjaxRequest("GET", "header.html", LoadHeader);
     }
 
     /**
@@ -177,10 +192,7 @@
                 <td class="text-center"><button value="${key}" class="btn btn-primary btn-sm edit"><i class="fas fa-edit fa-sm"></i> Edit</button></td>
                 <td class="text-center"><button value="${key}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</button></td>
                 </tr>
-                `;
-
-                
-                
+                `;                
                 index++;
             }
 
@@ -295,7 +307,8 @@
             // use jQuery shortcut to load the users.json file
             $.get("./Data/users.json", function(data)
             { 
-                // for everry user in the users.json file, loop
+                //console.log(data);
+                // for every user in the users.json file, loop
                 for (const user of data.users) 
                 {
                     // check if the username and password entered match with user
@@ -304,11 +317,10 @@
                         // get the user data from the file and assign it to our empty user object
                         newUser.fromJSON(user);
                         success = true;
-                        break;
+                        break; // user found, don't keep looking
                     }
                 }
-
-                 // if username and password matches - success...perform the login sequence
+                 // if username and password matches...success -> perform the login sequence
                 if(success)
                 {
                     // add user to session storage
@@ -317,7 +329,7 @@
                     // hide any error messages
                     messageArea.removeAttr("class").hide();
 
-                    // redirect the user to the secure area of our site - contact-list
+                    // redirect the user to the secure area of our site - contact-list.html
                     location.href = "contact-list.html";
                 }
                 else
@@ -328,9 +340,7 @@
                 }
             });
 
-           
-
-            $("#cancelButtton").on("click", function()
+            $("#cancelButton").on("click", function()
             {
                 // clear the login form
                 document.forms[0].reset();
@@ -341,36 +351,6 @@
         });
     }
 
-    function CheckLogin()
-    {
-        // if user is logged in, then.. cna I get a user key from session storage? 
-        // if so someone is logged in
-        // if user is logged in
-        if(sessionStorage.getItem("user"))
-        {
-            // swap out the login link for the logout link
-            $("#login").html(
-                `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`
-            );
-
-            $("#logout").on("click", function()
-            {
-                // perform logout
-                sessionStorage.clear();
-
-                // redirect back to login
-                location.href = "login.html";
-            });
-        }
-    }
-    /*function AuthGuard()
-    {
-        if(!sessionStorage.getItem("user"))
-        {
-            // redirect to login page
-            location.href = "login.html";
-        }
-    }*/
     function DisplayRegisterPage()
     {
         console.log("Register Page");
@@ -380,9 +360,8 @@
     function Start()
     {
         console.log("App Started!!");
-
-        AjaxRequest("GET", "header.html", LoadHeader);
-        
+        AjaxRequest("GET", "header.html", LoadHeader); // when page loads inject the header inside the page for every page
+           
         switch (document.title) {
           case "Home":
             DisplayHomePage();

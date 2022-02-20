@@ -3,45 +3,44 @@
 (function()
 {
     /**
-     * This method uses AJAX to open a connection to the url and returns data to the callback function
-     *
-     * @param {string} method
-     * @param {string} url
-     * @param {Function} callback
-     */
-    function AjaxRequest(method, url, callback)
-    {
-        // step 1 - instantiate an XHR object
+    * This method uses AJAX to open a connection to the url and returns data
+    *  to the callback function
+    *
+    * @param {string} method
+    * @param {string} url
+    * @param {Function} callback
+    * 
+    * 
+    */
+      function AjaxRequest(method, url, callback)
+      {
+        /* AJAX STEPS */
+        // Step 1 - instantiate an XHR object
         let XHR = new XMLHttpRequest();
-
-        // step 2 - create an event listener / handler for readystatechange event
+         
+        // Step 2 - create an event listener / handler for readystatechange event
         XHR.addEventListener("readystatechange", () =>
         {
             if(XHR.readyState === 4 && XHR.status === 200)
             {
-               callback(XHR.responseText);
+                if(typeof callback === "function") // if callback is a function pass in data to data property in the callback function
+                {
+                    callback(XHR.responseText);
+                }
+                else
+                {
+                    console.error("ERROR: callback not a function")
+                }
+                
             }
         });
+ 
+        // Step 3 - open a connection to the server
+        XHR.open("GET", "header.html");
 
-        // step 3 - open a connection to the server
-        XHR.open(method, url);
-
-        // step 4 - send the request to the server
+        // Step 4 - send the request to the server
         XHR.send();
-    }
-
-    /**
-     * This function loads the NavBar from the header file and injects it into the page
-     *
-     * @param {string} data
-     */
-    function LoadHeader(data)
-    {
-        $("header").html(data); // data payload
-        $(`li>a:contains(${document.title})`).addClass("active"); // add a class of 'active'
-        CheckLogin();
-    }
-
+      }
 
     function DisplayAboutPage()
     {
@@ -73,6 +72,12 @@
         $("body").append(`<article class="container">
         <p id="ArticleParagraph" class="mt-3">This is the Article Paragraph</p>
         </article>`);
+
+        AjaxRequest("GET", "header.html",(data) =>
+        {
+            $("header").html(data); // data payload
+            $(`li>a:contains(${document.title})`).addClass("active"); // add a class of 'active'
+        });
     }
 
     /**
@@ -280,97 +285,9 @@
 
     function DisplayLoginPage()
     {
-        console.log("Login Page");
-
-        let messageArea = $("#messageArea");
-        messageArea.hide();
-
-        $("#loginButton").on("click", function()
-        {
-            let success = false;
-
-            // create an empty User object
-            let newUser = new core.User();
-
-            // use jQuery shortcut to load the users.json file
-            $.get("./Data/users.json", function(data)
-            { 
-                // for everry user in the users.json file, loop
-                for (const user of data.users) 
-                {
-                    // check if the username and password entered match with user
-                    if(username.value == user.Username && password.value == user.Password)
-                    {
-                        // get the user data from the file and assign it to our empty user object
-                        newUser.fromJSON(user);
-                        success = true;
-                        break;
-                    }
-                }
-
-                 // if username and password matches - success...perform the login sequence
-                if(success)
-                {
-                    // add user to session storage
-                    sessionStorage.setItem("user", newUser.serialize());
-
-                    // hide any error messages
-                    messageArea.removeAttr("class").hide();
-
-                    // redirect the user to the secure area of our site - contact-list
-                    location.href = "contact-list.html";
-                }
-                else
-                {
-                    // display an error message
-                    $("#username").trigger("focus").trigger("select");
-                    messageArea.addClass("alert alert-danger").text("Error: Invalid Login Information.").show();
-                }
-            });
-
-           
-
-            $("#cancelButtton").on("click", function()
-            {
-                // clear the login form
-                document.forms[0].reset();
-
-                // return to  the home page
-                location.href = "index.html";
-            });
-        });
+        console.logl("Login Page");
     }
 
-    function CheckLogin()
-    {
-        // if user is logged in, then.. cna I get a user key from session storage? 
-        // if so someone is logged in
-        // if user is logged in
-        if(sessionStorage.getItem("user"))
-        {
-            // swap out the login link for the logout link
-            $("#login").html(
-                `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`
-            );
-
-            $("#logout").on("click", function()
-            {
-                // perform logout
-                sessionStorage.clear();
-
-                // redirect back to login
-                location.href = "login.html";
-            });
-        }
-    }
-    /*function AuthGuard()
-    {
-        if(!sessionStorage.getItem("user"))
-        {
-            // redirect to login page
-            location.href = "login.html";
-        }
-    }*/
     function DisplayRegisterPage()
     {
         console.log("Register Page");
@@ -381,8 +298,6 @@
     {
         console.log("App Started!!");
 
-        AjaxRequest("GET", "header.html", LoadHeader);
-        
         switch (document.title) {
           case "Home":
             DisplayHomePage();

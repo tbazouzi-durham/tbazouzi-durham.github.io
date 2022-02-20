@@ -363,14 +363,6 @@
             });
         }
     }
-    /*function AuthGuard()
-    {
-        if(!sessionStorage.getItem("user"))
-        {
-            // redirect to login page
-            location.href = "login.html";
-        }
-    }*/
     function DisplayRegisterPage()
     {
         console.log("Register Page");
@@ -383,6 +375,7 @@
 
         AjaxRequest("GET", "header.html", LoadHeader);
         
+
         switch (document.title) {
           case "Home":
             DisplayHomePage();

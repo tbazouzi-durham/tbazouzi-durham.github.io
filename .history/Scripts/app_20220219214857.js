@@ -39,7 +39,6 @@
     {
         $("header").html(data); // data payload
         $(`li>a:contains(${document.title})`).addClass("active"); // add a class of 'active'
-        CheckLogin();
     }
 
 
@@ -340,37 +339,16 @@
             });
         });
     }
-
     function CheckLogin()
     {
         // if user is logged in, then.. cna I get a user key from session storage? 
-        // if so someone is logged in
-        // if user is logged in
+        //if so someone is logged in
         if(sessionStorage.getItem("user"))
         {
-            // swap out the login link for the logout link
-            $("#login").html(
-                `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`
-            );
-
-            $("#logout").on("click", function()
-            {
-                // perform logout
-                sessionStorage.clear();
-
-                // redirect back to login
-                location.href = "login.html";
-            });
+            // toggle log in/log out
         }
     }
-    /*function AuthGuard()
-    {
-        if(!sessionStorage.getItem("user"))
-        {
-            // redirect to login page
-            location.href = "login.html";
-        }
-    }*/
+
     function DisplayRegisterPage()
     {
         console.log("Register Page");
@@ -382,7 +360,7 @@
         console.log("App Started!!");
 
         AjaxRequest("GET", "header.html", LoadHeader);
-        
+
         switch (document.title) {
           case "Home":
             DisplayHomePage();

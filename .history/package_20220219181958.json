@@ -1,7 +1,7 @@
 {
-  "name": "ICE-6",
+  "name": "ICE-5",
   "version": "1.0.0",
-  "description": "ICE 6 for WEBD6201 in the Winter 2022 Semester",
+  "description": "ICE 5 for WEBD6201 in the Winter 2022 Semester",
   "main": "index.js",
   "author": "Taylor Bazouzi",
   "license": "MIT",
