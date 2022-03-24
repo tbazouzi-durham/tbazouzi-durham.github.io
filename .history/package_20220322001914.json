@@ -1,0 +1,17 @@
+{
+  "name": "webd6201-w2022-lab3",
+  "version": "1.0.0",
+  "description": "starter project for lab3",
+  "main": "index.js",
+  "author": "Tom Tsiliopoulos",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@popperjs/core": "^2.11.2",
+    "bootstrap": "^5.1.3",
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.14"
+  }
+}

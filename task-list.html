@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- CSS Section -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./Content/app.css">
+</head>
+<body>
+    <!-- Main Header -->
+    <header>
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html">WEBD6201</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html"><i class="fas fa-home fa-lg"></i> Home</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="about.html"><i class="fas fa-info fa-lg"></i> About Us</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="projects.html"><i class="fas fa-cog fa-lg"></i> Projects</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="services.html"><i class="fas fa-map fa-lg"></i> Services</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="contact.html"><i class="fas fa-phone fa-lg"></i> Contact Us</a>
+                  </li>
+
+                  <li id="login" class="nav-item">
+                    <a class="nav-link" aria-current="page" href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+      <!-- Main Content -->
+      <main class="container" id="mainContent">
+        <div class="row">
+          <div class="offset-md-3 col-md-6 col-sm-12">
+                <div class="login" id="contentArea">
+                    <h1 class="display-4">Task List</h1>
+                    <div id="messageArea"></div>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Task</span>
+                      </div>
+                      <input type="text" class="form-control" id="taskTextInput" placeholder="Enter New Task">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button" id="newTaskButton"><i class="fas fa-plus-circle"></i></button>
+                      </div>
+                    </div>
+                    <ul class="list-group list-group-flush" id="taskList">
+
+                      <li class="list-group-item" id="task">
+                        <span id="taskText">Example Task 1</span>
+                        <span class="float-end">
+                          <button class="btn btn-outline-primary btn-sm editButton"><i class="fas fa-edit"></i>
+                          <button class="btn btn-outline-danger btn-sm deleteButton"><i class="fas fa-trash-alt"></i></button>
+                        </span>
+                        <input type="text" class="form-control edit-task editTextInput">
+                      </li>
+
+                      <li class="list-group-item" id="task">
+                        <span id="taskText">Example Task 2</span>
+                        <span class="float-end">
+                          <button class="btn btn-outline-primary btn-sm editButton"><i class="fas fa-edit"></i>
+                          <button class="btn btn-outline-danger btn-sm deleteButton"><i class="fas fa-trash-alt"></i></button>
+                          </span>
+                        <input type="text" class="form-control edit-task editTextInput">
+                      </li>
+                    </ul>
+                </div>
+          </div>
+      </div>
+      </main>
+
+    <!-- Main Footer -->
+    <footer>
+        <nav class="navbar fixed-bottom navbar-light bg-light">
+            <div class="container-fluid">
+              <h4><i class="far fa-copyright fa-lg"></i> Copyright 2021.</h4>
+            </div>
+          </nav>
+    </footer>
+
+    <!-- Script Section-->
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="./Scripts/namespace.js"></script>
+    <script src="./Scripts/user.js"></script>
+    <script src="./Scripts/app.js"></script>
+</body>
+</html>

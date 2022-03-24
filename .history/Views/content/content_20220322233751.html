@@ -1,0 +1,44 @@
+<br />
+<div class="row">
+    <div class="col-lg-3 col-md-3">
+        <a data="task-list" class="btn btn-primary btn-lg"><i class="fas fa-users fa-lg"></i> Show Task List</a>
+    </div>
+    <div class="offset-md-3 col-md-6 col-sm-12">
+        <div class="login" id="contentArea">
+            <h1 class="display-4">Task List</h1>
+            <div id="messageArea"></div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Task</span>
+                </div>
+                <input type="text" class="form-control" id="taskTextInput" placeholder="Enter New Task">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button" id="newTaskButton"><i
+                            class="fas fa-plus-circle"></i></button>
+                </div>
+            </div>
+            <ul class="list-group list-group-flush" id="taskList">
+
+                <li class="list-group-item" id="task">
+                    <span id="taskText">Example Task 1</span>
+                    <span class="float-end">
+                        <button class="btn btn-outline-primary btn-sm editButton"><i class="fas fa-edit"></i>
+                            <button class="btn btn-outline-danger btn-sm deleteButton"><i
+                                    class="fas fa-trash-alt"></i></button>
+                    </span>
+                    <input type="text" class="form-control edit-task editTextInput">
+                </li>
+
+                <li class="list-group-item" id="task">
+                    <span id="taskText">Example Task 2</span>
+                    <span class="float-end">
+                        <button class="btn btn-outline-primary btn-sm editButton"><i class="fas fa-edit"></i>
+                            <button class="btn btn-outline-danger btn-sm deleteButton"><i
+                                    class="fas fa-trash-alt"></i></button>
+                    </span>
+                    <input type="text" class="form-control edit-task editTextInput">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
